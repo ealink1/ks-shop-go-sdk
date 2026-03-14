@@ -11,7 +11,7 @@
 ### 安装
 
 ```bash
-go get github.com/your-username/ks-shop-go-sdk
+go get github.com/ealink1/ks-shop-go-sdk
 ```
 > 注意：请根据实际仓库地址调整上述 import 路径。
 
