@@ -10,19 +10,6 @@ import (
 	"strconv"
 )
 
-type Oauth2AccessTokenResponse struct {
-	Result                int      `json:"result"`
-	AccessToken           string   `json:"access_token"`
-	OpenId                string   `json:"open_id"`
-	ExpiresIn             int      `json:"expires_in"`
-	TokenType             string   `json:"token_type"`
-	RefreshToken          string   `json:"refresh_token"`
-	RefreshTokenExpiresIn int      `json:"refresh_token_expires_in"`
-	Scopes                []string `json:"scopes"`
-	Error                 string   `json:"error"`
-	ErrorMsg              string   `json:"error_msg"`
-}
-
 func (k *KsShopClient) Oauth2AccessToken(ctx context.Context, code string) (*Oauth2AccessTokenResponse, error) {
 	values := url.Values{}
 	values.Set("app_id", k.AppId)
@@ -66,4 +53,17 @@ func (k *KsShopClient) Oauth2AccessToken(ctx context.Context, code string) (*Oau
 	}
 
 	return &result, nil
+}
+
+type Oauth2AccessTokenResponse struct {
+	Result                int      `json:"result"`
+	AccessToken           string   `json:"access_token"`
+	OpenId                string   `json:"open_id"`
+	ExpiresIn             int      `json:"expires_in"`
+	TokenType             string   `json:"token_type"`
+	RefreshToken          string   `json:"refresh_token"`
+	RefreshTokenExpiresIn int      `json:"refresh_token_expires_in"`
+	Scopes                []string `json:"scopes"`
+	Error                 string   `json:"error"`
+	ErrorMsg              string   `json:"error_msg"`
 }

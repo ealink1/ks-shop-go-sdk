@@ -21,9 +21,9 @@ func (k *KsShopClient) SetEnv(env string) {
 }
 
 const (
-	OnlineEnv        = "https://openapi.kwaixiaodian.com"
-	OnlineRefreshEnv = "https://open.kuaishou.com"
-	OnlineEnvBatest  = "https://open.kwaixiaodian.com"
+	OnlineEnv = "https://openapi.kwaixiaodian.com"
+	// OnlineRefreshEnv = "https://open.kuaishou.com"
+	OnlineEnvBatest = "https://open.kwaixiaodian.com"
 )
 
 const (
@@ -35,4 +35,12 @@ const (
 
 	// OpenOrderCursorListApi 获取订单列表
 	OpenOrderCursorListApi = "/open/order/cursor/list"
+	// OpenUserInfoGetApi 获取授权用户信息
+	OpenUserInfoGetApi = "/open/user/info/get"
+	// OpenItemListGetApi 获取商品列表
+	OpenItemListGetApi = "/open/item/list/get"
+	// OpenSellerOrderCpsDetailApi 获取分销订单详情
+	OpenSellerOrderCpsDetailApi = "/open/seller/order/cps/detail"
+	// OpenSellerOrderCpsListApi 获取分销订单列表
+	OpenSellerOrderCpsListApi = "/open/seller/order/cps/list"
 )

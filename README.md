@@ -46,6 +46,18 @@ func main() {
 - `client.go`: 客户端结构定义及初始化
 - `shop_api.go`: API 接口实现
 
+## 接口列表
+
+| 方法名 | 接口路径 | 说明 |
+| --- | --- | --- |
+| `Oauth2AccessToken` | `/oauth2/access_token` | 用授权码 code 换取 access_token 与 refresh_token |
+| `Oauth2RefreshToken` | `/oauth2/refresh_token` | 用 refresh_token 换取新的 access_token |
+| `OpenUserInfoGet` | `/open/user/info/get` | 获取授权账号信息 |
+| `OpenItemListGet` | `/open/item/list/get` | 获取商品列表 |
+| `OpenOrderCursorList` | `/open/order/cursor/list` | 游标分页获取订单列表 |
+| `OpenSellerOrderCpsDetail` | `/open/seller/order/cps/detail` | 获取分销订单详情 |
+| `OpenSellerOrderCpsList` | `/open/seller/order/cps/list` | 获取分销订单列表 |
+
 ## License
 
 MIT
