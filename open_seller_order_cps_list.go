@@ -8,43 +8,37 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 )
 
-func (k *KsShopClient) OpenSellerOrderCpsList(ctx context.Context, reqData OpenSellerOrderCpsListRequest) (*OpenSellerOrderCpsListResponse, error) {
-	method := reqData.Method
-	if method == "" {
-		method = "open.seller.order.cps.list"
-	}
-
-	appKey := reqData.AppKey
-	if appKey == "" {
-		appKey = k.AppId
-	}
-
-	version := reqData.Version
-	if version == "" {
-		version = "1"
-	}
-
-	signMethod := reqData.SignMethod
-	if signMethod == "" {
-		signMethod = "MD5"
-	}
-
+func (k *KsShopClient) OpenSellerOrderCpsList(ctx context.Context, reqData *OpenSellerOrderCpsListRequest) (*OpenSellerOrderCpsListResponse, error) {
 	paramBytes, err := json.Marshal(reqData.Param)
 	if err != nil {
 		return nil, err
 	}
 
 	values := url.Values{}
-	values.Set("access_token", reqData.AccessToken)
-	values.Set("method", method)
+	timestamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
+	sign, err := k.Sign(map[string]string{
+		"access_token": k.AccToken,
+		"method":       k.FormatApi(OpenSellerOrderCpsListApi),
+		"param":        string(paramBytes),
+		"appkey":       k.AppId,
+		"version":      k.Version,
+		"signMethod":   k.SignMethod,
+		"timestamp":    timestamp,
+	})
+	if err != nil {
+		return nil, err
+	}
+	values.Set("access_token", k.AccToken)
+	values.Set("method", k.FormatApi(OpenSellerOrderCpsListApi))
 	values.Set("param", string(paramBytes))
-	values.Set("sign", reqData.Sign)
-	values.Set("appkey", appKey)
-	values.Set("version", version)
-	values.Set("signMethod", signMethod)
-	values.Set("timestamp", strconv.FormatInt(reqData.Timestamp, 10))
+	values.Set("sign", sign)
+	values.Set("appkey", k.AppId)
+	values.Set("version", k.Version)
+	values.Set("signMethod", k.SignMethod)
+	values.Set("timestamp", timestamp)
 
 	endpoint := k.Env + OpenSellerOrderCpsListApi + "?" + values.Encode()
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
@@ -106,14 +100,14 @@ type OpenSellerOrderCpsListParam struct {
 }
 
 type OpenSellerOrderCpsListResponse struct {
-	Result    int                       `json:"result"`
-	Msg       string                    `json:"msg"`
-	ErrorMsg  string                    `json:"error_msg"`
-	Code      string                    `json:"code"`
+	Result    int                        `json:"result"`
+	Msg       string                     `json:"msg"`
+	ErrorMsg  string                     `json:"error_msg"`
+	Code      string                     `json:"code"`
 	Data      OpenSellerOrderCpsListData `json:"data"`
-	RequestId string                    `json:"requestId"`
-	SubMsg    string                    `json:"sub_msg"`
-	SubCode   string                    `json:"sub_code"`
+	RequestId string                     `json:"requestId"`
+	SubMsg    string                     `json:"sub_msg"`
+	SubCode   string                     `json:"sub_code"`
 }
 
 type OpenSellerOrderCpsListData struct {

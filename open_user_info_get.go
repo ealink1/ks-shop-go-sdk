@@ -8,43 +8,39 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 )
 
-func (k *KsShopClient) OpenUserInfoGet(ctx context.Context, reqData OpenUserInfoGetRequest) (*OpenUserInfoGetResponse, error) {
-	method := reqData.Method
-	if method == "" {
-		method = "open.user.info.get"
-	}
+func (k *KsShopClient) OpenUserInfoGet(ctx context.Context, reqData *OpenUserInfoGetRequest) (*OpenUserInfoGetResponse, error) {
 
-	appKey := reqData.AppKey
-	if appKey == "" {
-		appKey = k.AppId
-	}
-
-	version := reqData.Version
-	if version == "" {
-		version = "1"
-	}
-
-	signMethod := reqData.SignMethod
-	if signMethod == "" {
-		signMethod = "MD5"
-	}
-
-	paramBytes, err := json.Marshal(reqData.Param)
+	paramBytes, err := json.Marshal(reqData)
 	if err != nil {
 		return nil, err
 	}
 
 	values := url.Values{}
-	values.Set("access_token", reqData.AccessToken)
-	values.Set("method", method)
+	timestamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
+	sign := ""
+	sign, err = k.Sign(map[string]string{
+		"access_token": k.AccToken,
+		"method":       k.FormatApi(OpenUserInfoGetApi),
+		"param":        string(paramBytes),
+		"appkey":       k.AppId,
+		"version":      k.Version,
+		"signMethod":   k.SignMethod,
+		"timestamp":    timestamp,
+	})
+	if err != nil {
+		return nil, err
+	}
+	values.Set("access_token", k.AccToken)
+	values.Set("method", k.FormatApi(OpenUserInfoGetApi))
 	values.Set("param", string(paramBytes))
-	values.Set("sign", reqData.Sign)
-	values.Set("appkey", appKey)
-	values.Set("version", version)
-	values.Set("signMethod", signMethod)
-	values.Set("timestamp", strconv.FormatInt(reqData.Timestamp, 10))
+	values.Set("sign", sign)
+	values.Set("appkey", k.AppId)
+	values.Set("version", k.Version)
+	values.Set("signMethod", k.SignMethod)
+	values.Set("timestamp", timestamp)
 
 	endpoint := k.Env + OpenUserInfoGetApi + "?" + values.Encode()
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
@@ -84,17 +80,6 @@ func (k *KsShopClient) OpenUserInfoGet(ctx context.Context, reqData OpenUserInfo
 }
 
 type OpenUserInfoGetRequest struct {
-	AccessToken string
-	Sign        string
-	Timestamp   int64
-	AppKey      string
-	Version     string
-	SignMethod  string
-	Method      string
-	Param       OpenUserInfoGetParam
-}
-
-type OpenUserInfoGetParam struct {
 }
 
 type OpenUserInfoGetResponse struct {

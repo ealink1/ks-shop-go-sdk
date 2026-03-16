@@ -8,43 +8,37 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 )
 
-func (k *KsShopClient) OpenServiceMarketBuyerServiceInfo(ctx context.Context, reqData OpenServiceMarketBuyerServiceInfoRequest) (*OpenServiceMarketBuyerServiceInfoResponse, error) {
-	method := reqData.Method
-	if method == "" {
-		method = "open.service.market.buyer.service.info"
-	}
-
-	appKey := reqData.AppKey
-	if appKey == "" {
-		appKey = k.AppId
-	}
-
-	version := reqData.Version
-	if version == "" {
-		version = "1"
-	}
-
-	signMethod := reqData.SignMethod
-	if signMethod == "" {
-		signMethod = "MD5"
-	}
-
+func (k *KsShopClient) OpenServiceMarketBuyerServiceInfo(ctx context.Context, reqData *OpenServiceMarketBuyerServiceInfoRequest) (*OpenServiceMarketBuyerServiceInfoResponse, error) {
 	paramBytes, err := json.Marshal(reqData.Param)
 	if err != nil {
 		return nil, err
 	}
 
 	values := url.Values{}
-	values.Set("access_token", reqData.AccessToken)
-	values.Set("method", method)
+	timestamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
+	sign, err := k.Sign(map[string]string{
+		"access_token": k.AccToken,
+		"method":       k.FormatApi(OpenServiceMarketBuyerServiceInfoApi),
+		"param":        string(paramBytes),
+		"appkey":       k.AppId,
+		"version":      k.Version,
+		"signMethod":   k.SignMethod,
+		"timestamp":    timestamp,
+	})
+	if err != nil {
+		return nil, err
+	}
+	values.Set("access_token", k.AccToken)
+	values.Set("method", k.FormatApi(OpenServiceMarketBuyerServiceInfoApi))
 	values.Set("param", string(paramBytes))
-	values.Set("sign", reqData.Sign)
-	values.Set("appkey", appKey)
-	values.Set("version", version)
-	values.Set("signMethod", signMethod)
-	values.Set("timestamp", strconv.FormatInt(reqData.Timestamp, 10))
+	values.Set("sign", sign)
+	values.Set("appkey", k.AppId)
+	values.Set("version", k.Version)
+	values.Set("signMethod", k.SignMethod)
+	values.Set("timestamp", timestamp)
 
 	endpoint := k.Env + OpenServiceMarketBuyerServiceInfoApi + "?" + values.Encode()
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
