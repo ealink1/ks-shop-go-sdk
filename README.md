@@ -12,6 +12,7 @@
 
 ```bash
 go get github.com/ealink1/ks-shop-go-sdk
+go get -u github.com/ealink1/ks-shop-go-sdk@latest
 ```
 > 注意：请根据实际仓库地址调整上述 import 路径。
 
@@ -57,6 +58,7 @@ func main() {
 | `OpenOrderCursorList` | `/open/order/cursor/list` | 游标分页获取订单列表 |
 | `OpenSellerOrderCpsDetail` | `/open/seller/order/cps/detail` | 获取分销订单详情 |
 | `OpenSellerOrderCpsList` | `/open/seller/order/cps/list` | 获取分销订单列表 |
+| `OpenServiceMarketBuyerServiceInfo` | `/open/service/market/buyer/service/info` | 获取买家服务市场授权信息 |
 
 ## License
 

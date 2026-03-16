@@ -43,4 +43,6 @@ const (
 	OpenSellerOrderCpsDetailApi = "/open/seller/order/cps/detail"
 	// OpenSellerOrderCpsListApi 获取分销订单列表
 	OpenSellerOrderCpsListApi = "/open/seller/order/cps/list"
+	// OpenServiceMarketBuyerServiceInfoApi 获取买家服务市场授权信息
+	OpenServiceMarketBuyerServiceInfoApi = "/open/service/market/buyer/service/info"
 )
