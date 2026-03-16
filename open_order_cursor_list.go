@@ -13,7 +13,7 @@ import (
 
 // OpenOrderCursorList 获取订单列表
 func (k *KsShopClient) OpenOrderCursorList(ctx context.Context, reqData *OpenOrderCursorListRequest) (*OpenOrderCursorListResponse, error) {
-	paramBytes, err := json.Marshal(reqData.Param)
+	paramBytes, err := json.Marshal(reqData)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (k *KsShopClient) OpenOrderCursorList(ctx context.Context, reqData *OpenOrd
 	return &result, nil
 }
 
-type OpenOrderCursorListParam struct {
+type OpenOrderCursorListRequest struct {
 	OrderViewStatus int    `json:"orderViewStatus"`
 	PageSize        int    `json:"pageSize"`
 	Sort            int    `json:"sort"`
@@ -87,17 +87,6 @@ type OpenOrderCursorListParam struct {
 	EndTime         int64  `json:"endTime"`
 	CpsType         int    `json:"cpsType"`
 	Cursor          string `json:"cursor"`
-}
-
-type OpenOrderCursorListRequest struct {
-	AccessToken string
-	Sign        string
-	Timestamp   int64
-	AppKey      string
-	Version     string
-	SignMethod  string
-	Method      string
-	Param       OpenOrderCursorListParam
 }
 
 type OpenOrderCursorListResponse struct {

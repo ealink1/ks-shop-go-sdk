@@ -12,7 +12,7 @@ import (
 )
 
 func (k *KsShopClient) OpenItemListGet(ctx context.Context, reqData *OpenItemListGetRequest) (*OpenItemListGetResponse, error) {
-	paramBytes, err := json.Marshal(reqData.Param)
+	paramBytes, err := json.Marshal(reqData)
 	if err != nil {
 		return nil, err
 	}
@@ -77,24 +77,13 @@ func (k *KsShopClient) OpenItemListGet(ctx context.Context, reqData *OpenItemLis
 	return &result, nil
 }
 
-type OpenItemListGetParam struct {
+type OpenItemListGetRequest struct {
 	ItemStatus           int  `json:"itemStatus"`
 	ItemType             int  `json:"itemType"`
 	PageNumber           int  `json:"pageNumber"`
 	PageSize             int  `json:"pageSize"`
 	OnOfflineStatus      int  `json:"onOfflineStatus"`
 	SupportNegativeStock bool `json:"supportNegativeStock"`
-}
-
-type OpenItemListGetRequest struct {
-	AccessToken string
-	Sign        string
-	Timestamp   int64
-	AppKey      string
-	Version     string
-	SignMethod  string
-	Method      string
-	Param       OpenItemListGetParam
 }
 
 type OpenItemListGetResponse struct {

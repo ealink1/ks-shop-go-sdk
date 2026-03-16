@@ -12,7 +12,7 @@ import (
 )
 
 func (k *KsShopClient) OpenSellerOrderCpsDetail(ctx context.Context, reqData *OpenSellerOrderCpsDetailRequest) (*OpenSellerOrderCpsDetailResponse, error) {
-	paramBytes, err := json.Marshal(reqData.Param)
+	paramBytes, err := json.Marshal(reqData)
 	if err != nil {
 		return nil, err
 	}
@@ -78,17 +78,6 @@ func (k *KsShopClient) OpenSellerOrderCpsDetail(ctx context.Context, reqData *Op
 }
 
 type OpenSellerOrderCpsDetailRequest struct {
-	AccessToken string
-	Sign        string
-	Timestamp   int64
-	AppKey      string
-	Version     string
-	SignMethod  string
-	Method      string
-	Param       OpenSellerOrderCpsDetailParam
-}
-
-type OpenSellerOrderCpsDetailParam struct {
 	DistributorId int64 `json:"distributorId"`
 	OrderId       int64 `json:"orderId"`
 }

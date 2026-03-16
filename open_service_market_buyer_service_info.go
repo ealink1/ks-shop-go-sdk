@@ -12,7 +12,7 @@ import (
 )
 
 func (k *KsShopClient) OpenServiceMarketBuyerServiceInfo(ctx context.Context, reqData *OpenServiceMarketBuyerServiceInfoRequest) (*OpenServiceMarketBuyerServiceInfoResponse, error) {
-	paramBytes, err := json.Marshal(reqData.Param)
+	paramBytes, err := json.Marshal(reqData)
 	if err != nil {
 		return nil, err
 	}
@@ -78,17 +78,6 @@ func (k *KsShopClient) OpenServiceMarketBuyerServiceInfo(ctx context.Context, re
 }
 
 type OpenServiceMarketBuyerServiceInfoRequest struct {
-	AccessToken string
-	Sign        string
-	Timestamp   int64
-	AppKey      string
-	Version     string
-	SignMethod  string
-	Method      string
-	Param       OpenServiceMarketBuyerServiceInfoParam
-}
-
-type OpenServiceMarketBuyerServiceInfoParam struct {
 	BuyerOpenId string `json:"buyerOpenId"`
 }
 
