@@ -31,6 +31,7 @@ func (k *KsShopClient) OpenServiceMarketBuyerServiceInfo(ctx context.Context, re
 	if err != nil {
 		return nil, err
 	}
+
 	values.Set("access_token", k.AccToken)
 	values.Set("method", k.FormatApi(OpenServiceMarketBuyerServiceInfoApi))
 	values.Set("param", string(paramBytes))

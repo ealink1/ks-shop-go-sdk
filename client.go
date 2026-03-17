@@ -1,7 +1,10 @@
 package ks_shop_go_sdk
 
 import (
+	"crypto/hmac"
 	"crypto/md5"
+	"crypto/sha256"
+	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 	"sort"
@@ -57,7 +60,6 @@ func (k *KsShopClient) Sign(params map[string]string) (string, error) {
 	if len(params) == 0 {
 		return "", fmt.Errorf("sign params is empty")
 	}
-
 	if k.SignSecret == "" {
 		return "", fmt.Errorf("sign secret is empty")
 	}
@@ -66,23 +68,41 @@ func (k *KsShopClient) Sign(params map[string]string) (string, error) {
 	if signMethod == "" {
 		signMethod = "MD5"
 	}
-
-	if signMethod != "MD5" {
-		return "", fmt.Errorf("unsupported sign method: %s", signMethod)
+	method := params["method"]
+	appKey := params["appkey"]
+	accessToken := params["access_token"]
+	if method == "" {
+		return "", fmt.Errorf("method not exist")
+	}
+	if appKey == "" {
+		return "", fmt.Errorf("appkey not exist")
+	}
+	if accessToken == "" {
+		return "", fmt.Errorf("access_token not exist")
 	}
 
-	keys := make([]string, 0, len(params))
-	for key, value := range params {
-		if key == "" || key == "sign" || value == "" {
-			continue
-		}
+	signMap := map[string]string{
+		"method":       method,
+		"appkey":       appKey,
+		"access_token": accessToken,
+	}
+	if value := params["signMethod"]; value != "" {
+		signMap["signMethod"] = value
+	}
+	if value := params["version"]; value != "" {
+		signMap["version"] = value
+	}
+	if value := params["timestamp"]; value != "" {
+		signMap["timestamp"] = value
+	}
+	if value := params["param"]; value != "" {
+		signMap["param"] = value
+	}
+
+	keys := make([]string, 0, len(signMap))
+	for key := range signMap {
 		keys = append(keys, key)
 	}
-
-	if len(keys) == 0 {
-		return "", fmt.Errorf("sign params is empty")
-	}
-
 	sort.Strings(keys)
 
 	builder := strings.Builder{}
@@ -92,11 +112,22 @@ func (k *KsShopClient) Sign(params map[string]string) (string, error) {
 		}
 		builder.WriteString(key)
 		builder.WriteString("=")
-		builder.WriteString(params[key])
+		builder.WriteString(signMap[key])
 	}
-	builder.WriteString(k.SignSecret)
 
-	signBytes := md5.Sum([]byte(builder.String()))
+	inputStr := builder.String() + "&signSecret=" + k.SignSecret
+	if signMethod == "HMAC_SHA256" || signMethod == "HMACSHA256" {
+		mac := hmac.New(sha256.New, []byte(k.SignSecret))
+		if _, err := mac.Write([]byte(inputStr)); err != nil {
+			return "", err
+		}
+		return base64.StdEncoding.EncodeToString(mac.Sum(nil)), nil
+	}
+	if signMethod != "MD5" {
+		return "", fmt.Errorf("unsupported sign method: %s", signMethod)
+	}
+
+	signBytes := md5.Sum([]byte(inputStr))
 	return hex.EncodeToString(signBytes[:]), nil
 }
 
