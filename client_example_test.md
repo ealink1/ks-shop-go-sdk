@@ -34,6 +34,17 @@ func TestKsShopClient_OpenShopInfoGet(t *testing.T) {
 	fmt.Println(must2Json(info))
 }
 
+func TestKsShopClient_OpenDistributionSellerActivityOpenInfo(t *testing.T) {
+	k := NewKsShopClient(appId, appSecret, signSecret, accToken)
+	info, err := k.OpenDistributionSellerActivityOpenInfo(context.Background(), &OpenDistributionSellerActivityOpenInfoRequest{
+		ActivityId: 10064904230,
+	})
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(must2Json(info))
+}
+
 func must2Json(i any) string {
 	bytes, err := json.Marshal(i)
 	if err != nil {

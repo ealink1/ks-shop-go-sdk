@@ -161,4 +161,6 @@ const (
 	OpenServiceMarketBuyerServiceInfoApi = "/open/service/market/buyer/service/info"
 	// OpenShopInfoGetApi 获取店铺信息
 	OpenShopInfoGetApi = "/open/shop/info/get"
+	// OpenDistributionSellerActivityOpenInfoApi 获取团长活动信息
+	OpenDistributionSellerActivityOpenInfoApi = "/open/distribution/seller/activity/open/info"
 )
