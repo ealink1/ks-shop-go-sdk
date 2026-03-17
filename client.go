@@ -159,4 +159,6 @@ const (
 	OpenSellerOrderCpsListApi = "/open/seller/order/cps/list"
 	// OpenServiceMarketBuyerServiceInfoApi 获取买家服务市场授权信息
 	OpenServiceMarketBuyerServiceInfoApi = "/open/service/market/buyer/service/info"
+	// OpenShopInfoGetApi 获取店铺信息
+	OpenShopInfoGetApi = "/open/shop/info/get"
 )

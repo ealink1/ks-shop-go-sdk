@@ -23,6 +23,7 @@ go.work
 *.swp
 *.swo
 *~
+*_test.go
 
 # OS Specific
 .DS_Store
