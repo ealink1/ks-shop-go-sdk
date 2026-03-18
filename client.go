@@ -164,3 +164,13 @@ const (
 	// OpenDistributionSellerActivityOpenInfoApi 获取团长活动信息
 	OpenDistributionSellerActivityOpenInfoApi = "/open/distribution/seller/activity/open/info"
 )
+
+const (
+	OrderStatusUnknown = 0  // 未知状态
+	OrderStatusWaitPay = 10 // 待付款
+	OrderStatusPaid    = 30 // 已付款
+	OrderStatusShipped = 40 // 已发货
+	OrderStatusSigned  = 50 // 已签收
+	OrderStatusSuccess = 70 // 订单成功
+	OrderStatusFailed  = 80 // 订单失败
+)
