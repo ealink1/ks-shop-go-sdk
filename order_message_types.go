@@ -1,13 +1,13 @@
 package ks_shop_go_sdk
 
 const (
-	KwaishopOrderDeliverySuccess  = "kwaishop_order_deliverySuccess" // 订单已收货消息
-	KwaishopOrderDelivering       = "kwaishop_order_delivering"      // 订单已发货消息
-	KwaishopOrderPaySuccess       = "kwaishop_order_paySuccess"      // 订单已支付消息
-	Kwaishop_order_totalFeeChange = "kwaishop_order_totalFeeChange"  // 订单费用变更消息
-	KwaishopOrderOrderSuccess     = "kwaishop_order_orderSuccess"    // 订单交易成功消息
-	KwaishopOrderAddOrder         = "kwaishop_order_addOrder"        // 订单新增消息
-	KwaishopOrderOrderFail        = "kwaishop_order_orderFail"       // 订单交易失败消息
+	KwaishopOrderDeliverySuccess = "kwaishop_order_deliverySuccess" // 订单已收货消息
+	KwaishopOrderDelivering      = "kwaishop_order_delivering"      // 订单已发货消息
+	KwaishopOrderPaySuccess      = "kwaishop_order_paySuccess"      // 订单已支付消息
+	KwaishopOrderTotalFeeChange  = "kwaishop_order_totalFeeChange"  // 订单费用变更消息
+	KwaishopOrderOrderSuccess    = "kwaishop_order_orderSuccess"    // 订单交易成功消息
+	KwaishopOrderAddOrder        = "kwaishop_order_addOrder"        // 订单新增消息
+	KwaishopOrderOrderFail       = "kwaishop_order_orderFail"       // 订单交易失败消息
 )
 
 // OrderMessage 订单消息
