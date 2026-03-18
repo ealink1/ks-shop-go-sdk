@@ -1,5 +1,15 @@
 package ks_shop_go_sdk
 
+const (
+	KwaishopOrderDeliverySuccess  = "kwaishop_order_deliverySuccess" // 订单已收货消息
+	KwaishopOrderDelivering       = "kwaishop_order_delivering"      // 订单已发货消息
+	KwaishopOrderPaySuccess       = "kwaishop_order_paySuccess"      // 订单已支付消息
+	Kwaishop_order_totalFeeChange = "kwaishop_order_totalFeeChange"  // 订单费用变更消息
+	KwaishopOrderOrderSuccess     = "kwaishop_order_orderSuccess"    // 订单交易成功消息
+	KwaishopOrderAddOrder         = "kwaishop_order_addOrder"        // 订单新增消息
+	KwaishopOrderOrderFail        = "kwaishop_order_orderFail"       // 订单交易失败消息
+)
+
 // OrderMessage 订单消息
 // {"eventId":"243_4027_2375715766426","msgId":"84_2375715766425","bizId":2607602240240301,"userId":2161524184,"openId":"f1b68e8f2a4995ed14bf57245903fd9a","appKey":"ks699183844582124027","event":"kwaishop_order_addOrder","info":"{\"oid\":2607602240240301,\"sellerId\":2161524184,\"createTime\":1773750942425,\"customizedInfo\":{\"customizedItemType\":0,\"customizedUrl\":\"\",\"customizedCode\":\"\"},\"openId\":\"Nb8oPhmFTcwPpYcJdfRnTr70nlt1u2eTFhvicWXG13P\",\"buyerOpenId\":\"f1b68e8f2a4995ed14bf572415fe3aff\"}","status":2,"createTime":1773750943589,"updateTime":1773750945776,"operator":"2323245113"}
 type OrderMessage struct {
