@@ -67,13 +67,13 @@ func (k *KsShopClient) OpenServiceMarketBuyerServiceInfo(ctx context.Context, re
 		return nil, fmt.Errorf("open_service_market_buyer_service_info json_parse failed: %w", err)
 	}
 
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Code != "" {
-			codeText = result.Code
-		}
-		return &result, fmt.Errorf("open_service_market_buyer_service_info failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Code != "" {
+	//		codeText = result.Code
+	//	}
+	//	return &result, fmt.Errorf("open_service_market_buyer_service_info failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }

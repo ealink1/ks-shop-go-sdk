@@ -77,13 +77,13 @@ func (k *KsShopClient) OpenDistributionSellerActivityOpenInfo(ctx context.Contex
 	}
 
 	// 业务校验
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Code != "" {
-			codeText = result.Code
-		}
-		return &result, fmt.Errorf("open_distribution_seller_activity_open_info failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Code != "" {
+	//		codeText = result.Code
+	//	}
+	//	return &result, fmt.Errorf("open_distribution_seller_activity_open_info failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }

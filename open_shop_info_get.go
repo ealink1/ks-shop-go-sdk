@@ -77,13 +77,13 @@ func (k *KsShopClient) OpenShopInfoGet(ctx context.Context, reqData *OpenShopInf
 	}
 
 	// 业务校验
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Code != "" {
-			codeText = result.Code
-		}
-		return &result, fmt.Errorf("open_shop_info_get failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Code != "" {
+	//		codeText = result.Code
+	//	}
+	//	return &result, fmt.Errorf("open_shop_info_get failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }
@@ -94,29 +94,29 @@ type OpenShopInfoGetRequest struct {
 
 // OpenShopInfoGetResponse 获取店铺信息响应
 type OpenShopInfoGetResponse struct {
-	Result    int                `json:"result"`     // 结果码
-	Msg       string             `json:"msg"`        // 结果描述
-	ErrorMsg  string             `json:"error_msg"`  // 错误信息
-	Code      string             `json:"code"`       // 业务码
+	Result    int                 `json:"result"`    // 结果码
+	Msg       string              `json:"msg"`       // 结果描述
+	ErrorMsg  string              `json:"error_msg"` // 错误信息
+	Code      string              `json:"code"`      // 业务码
 	Data      OpenShopInfoGetData `json:"data"`      // 店铺信息
-	RequestId string             `json:"requestId"`  // 请求 ID
-	SubMsg    string             `json:"sub_msg"`    // 子错误信息
-	SubCode   string             `json:"sub_code"`   // 子错误码
+	RequestId string              `json:"requestId"` // 请求 ID
+	SubMsg    string              `json:"sub_msg"`   // 子错误信息
+	SubCode   string              `json:"sub_code"`  // 子错误码
 }
 
 // OpenShopInfoGetData 店铺信息
 type OpenShopInfoGetData struct {
-	ShopName      string                  `json:"shopName"`      // 店铺名称
-	ShopType      int                     `json:"shopType"`      // 店铺类型
+	ShopName      string                   `json:"shopName"`      // 店铺名称
+	ShopType      int                      `json:"shopType"`      // 店铺类型
 	ShopScoreInfo OpenShopInfoGetScoreInfo `json:"shopScoreInfo"` // 店铺评分
 }
 
 // OpenShopInfoGetScoreInfo 店铺评分信息
 type OpenShopInfoGetScoreInfo struct {
-	ContentQualifyScoreStr      string `json:"contentQualifyScoreStr"`      // 内容资质得分
-	AfterSalesServiceScoreStr   string `json:"afterSalesServiceScoreStr"`   // 售后服务得分
-	LogisticsServiceScoreStr    string `json:"logisticsServiceScoreStr"`    // 物流服务得分
-	ShopExpScoreStr             string `json:"shopExpScoreStr"`             // 购物体验得分
-	ProductQualityScoreStr      string `json:"productQualityScoreStr"`      // 商品质量得分
-	CustomerServiceScoreStr     string `json:"customerServiceScoreStr"`     // 客服服务得分
+	ContentQualifyScoreStr    string `json:"contentQualifyScoreStr"`    // 内容资质得分
+	AfterSalesServiceScoreStr string `json:"afterSalesServiceScoreStr"` // 售后服务得分
+	LogisticsServiceScoreStr  string `json:"logisticsServiceScoreStr"`  // 物流服务得分
+	ShopExpScoreStr           string `json:"shopExpScoreStr"`           // 购物体验得分
+	ProductQualityScoreStr    string `json:"productQualityScoreStr"`    // 商品质量得分
+	CustomerServiceScoreStr   string `json:"customerServiceScoreStr"`   // 客服服务得分
 }

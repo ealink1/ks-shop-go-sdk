@@ -7,7 +7,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strconv"
 )
 
 func (k *KsShopClient) Oauth2RefreshToken(ctx context.Context, refreshToken string) (*Oauth2RefreshTokenResponse, error) {
@@ -44,13 +43,13 @@ func (k *KsShopClient) Oauth2RefreshToken(ctx context.Context, refreshToken stri
 		return nil, err
 	}
 
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Error != "" {
-			codeText = result.Error
-		}
-		return &result, fmt.Errorf("oauth2_refresh_token failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Error != "" {
+	//		codeText = result.Error
+	//	}
+	//	return &result, fmt.Errorf("oauth2_refresh_token failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }

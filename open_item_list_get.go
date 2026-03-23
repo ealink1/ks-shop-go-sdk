@@ -66,13 +66,13 @@ func (k *KsShopClient) OpenItemListGet(ctx context.Context, reqData *OpenItemLis
 		return nil, fmt.Errorf("open_item_list_get json_parse failed: %w", err)
 	}
 
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Code != "" {
-			codeText = result.Code
-		}
-		return &result, fmt.Errorf("open_item_list_get failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Code != "" {
+	//		codeText = result.Code
+	//	}
+	//	return &result, fmt.Errorf("open_item_list_get failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }

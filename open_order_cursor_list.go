@@ -67,13 +67,13 @@ func (k *KsShopClient) OpenOrderCursorList(ctx context.Context, reqData *OpenOrd
 		return nil, fmt.Errorf("open_order_cursor_list json_parse failed: %w", err)
 	}
 
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Code != "" {
-			codeText = result.Code
-		}
-		return &result, fmt.Errorf("open_order_cursor_list failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Code != "" {
+	//		codeText = result.Code
+	//	}
+	//	return &result, fmt.Errorf("open_order_cursor_list failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }

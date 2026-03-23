@@ -7,7 +7,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strconv"
 )
 
 func (k *KsShopClient) Oauth2AccessToken(ctx context.Context, code string) (*Oauth2AccessTokenResponse, error) {
@@ -44,13 +43,13 @@ func (k *KsShopClient) Oauth2AccessToken(ctx context.Context, code string) (*Oau
 		return nil, err
 	}
 
-	if result.Result != 1 {
-		codeText := strconv.Itoa(result.Result)
-		if result.Error != "" {
-			codeText = result.Error
-		}
-		return &result, fmt.Errorf("oauth2_access_token failed: code=%s msg=%s", codeText, result.ErrorMsg)
-	}
+	//if result.Result != 1 {
+	//	codeText := strconv.Itoa(result.Result)
+	//	if result.Error != "" {
+	//		codeText = result.Error
+	//	}
+	//	return &result, fmt.Errorf("oauth2_access_token failed: code=%s msg=%s", codeText, result.ErrorMsg)
+	//}
 
 	return &result, nil
 }
