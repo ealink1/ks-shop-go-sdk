@@ -245,7 +245,7 @@ const (
 	ProductStatusSystemDeleted = 3 // 3系统删除
 )
 
-var productStatusMap = map[int]string{
+var ProductStatusMap = map[int]string{
 	ProductStatusUnknown:       "未知",
 	ProductStatusNormal:        "正常",
 	ProductStatusDeleted:       "主播删除",
