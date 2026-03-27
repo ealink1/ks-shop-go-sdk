@@ -153,6 +153,8 @@ const (
 	OpenUserInfoGetApi = "/open/user/info/get"
 	// OpenItemListGetApi 获取商品列表
 	OpenItemListGetApi = "/open/item/list/get"
+	// OpenItemGetApi 获取商品详情
+	OpenItemGetApi = "/open/item/get"
 	// OpenSellerOrderCpsDetailApi 获取分销订单详情
 	OpenSellerOrderCpsDetailApi = "/open/seller/order/cps/detail"
 	// OpenSellerOrderCpsListApi 获取分销订单列表
