@@ -237,3 +237,17 @@ type OpenItemListGetServicePromise struct {
 	CrabRefund      bool `json:"crabRefund"`
 	WeightGuarantee bool `json:"weightGuarantee"`
 }
+
+const (
+	ProductStatusUnknown       = 0 // 0未知
+	ProductStatusNormal        = 1 // 1正常
+	ProductStatusDeleted       = 2 // 2主播删除
+	ProductStatusSystemDeleted = 3 // 3系统删除
+)
+
+var productStatusMap = map[int]string{
+	ProductStatusUnknown:       "未知",
+	ProductStatusNormal:        "正常",
+	ProductStatusDeleted:       "主播删除",
+	ProductStatusSystemDeleted: "系统删除",
+}
