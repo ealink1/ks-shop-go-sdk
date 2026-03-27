@@ -291,7 +291,7 @@ type OpenItemGetItemPropValue struct {
 	DatetimeTimestamp      int64                  `json:"datetimeTimestamp"`      // 日期时间戳（毫秒）
 	DateRange              OpenItemGetDateRange   `json:"dateRange"`              // 日期区间
 	SortNum                int                    `json:"sortNum"`                // 排序号
-	ImagePropValues        []OpenItemGetPropValue `json:"imagePropValues"`        // 图片属性值列表
+	ImagePropValues        any                    `json:"imagePropValues"`        // 图片属性值列表
 	PropName               string                 `json:"propName"`               // 属性名称
 	PropAlias              string                 `json:"propAlias"`              // 属性别名
 	InputType              int                    `json:"inputType"`              // 输入类型
