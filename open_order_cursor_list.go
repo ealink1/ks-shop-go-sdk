@@ -146,7 +146,7 @@ type OpenOrderCursorListOrderBaseInfo struct {
 	DiscountFee                   int                                     `json:"discountFee"`
 	BuyerNick                     string                                  `json:"buyerNick"`
 	PayTime                       int64                                   `json:"payTime"`
-	OrderLabels                   []string                                `json:"orderLabels"`
+	OrderLabels                   any                                     `json:"orderLabels"`
 	Channel                       string                                  `json:"channel"`
 	Remark                        string                                  `json:"remark"`
 	RemindShipmentSign            int                                     `json:"remindShipmentSign"`
