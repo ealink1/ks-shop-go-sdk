@@ -11,6 +11,30 @@ import (
 	"time"
 )
 
+const (
+	PayTypeUnknown      = 0  // 未知
+	PayTypeWechat       = 1  // 微信
+	PayTypeAlipay       = 2  // 支付宝
+	PayTypePingan       = 3  // 平安
+	PayTypeBankTransfer = 99 // 银行转账
+	PayTypeAlipayCredit = 88 // 支付宝先用后付
+
+	// 订单状态常量
+	OrderStatusUnknown        = 0  // 未知状态
+	OrderStatusPendingPayment = 10 // 待付款
+	OrderStatusPaid           = 30 // 已付款/待发货
+	OrderStatusShipped        = 40 // 已发货
+	OrderStatusSigned         = 50 // 已签收
+	OrderStatusSuccess        = 70 // 订单成功
+	OrderStatusFailed         = 80 // 订单失败/订单关闭（订单取消会转为该状态）
+
+	// 订单载体
+	OrderCarrierLive       = "live"       // 直播
+	OrderCarrierItemCard   = "itemCard"   // 商品卡
+	OrderCarrierShortVideo = "shortVideo" // 短视频
+	OrderCarrierOther      = "other"      // 其他
+)
+
 // OpenOrderCursorList 获取订单列表
 func (k *KsShopClient) OpenOrderCursorList(ctx context.Context, reqData *OpenOrderCursorListRequest) (*OpenOrderCursorListResponse, error) {
 	paramBytes, err := json.Marshal(reqData)
