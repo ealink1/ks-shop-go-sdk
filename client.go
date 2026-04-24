@@ -167,4 +167,6 @@ const (
 	OpenDistributionSellerActivityOpenInfoApi = "/open/distribution/seller/activity/open/info"
 	// OpenUserSellerGetApi 获取商家信息
 	OpenUserSellerGetApi = "/open/user/seller/get"
+	// OpenDistributionInvestmentActivityOpenInfoApi 获取招商活动详情
+	OpenDistributionInvestmentActivityOpenInfoApi = "/open/distribution/investment/activity/open/info"
 )
