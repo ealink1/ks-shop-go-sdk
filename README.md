@@ -60,6 +60,9 @@ func main() {
 | `OpenSellerOrderCpsList` | `/open/seller/order/cps/list` | 获取分销订单列表 |
 | `OpenServiceMarketBuyerServiceInfo` | `/open/service/market/buyer/service/info` | 获取买家服务市场授权信息 |
 | `OpenShopInfoGet` | `/open/shop/info/get` | 获取店铺信息 |
+| `OpenDistributionSellerActivityOpenInfo` | `/open/distribution/seller/activity/open/info` | 获取团长活动信息 |
+| `OpenUserSellerGet` | `/open/user/seller/get` | 获取商家信息 |
+| `OpenDistributionInvestmentActivityOpenInfo` | `/open/distribution/investment/activity/open/info` | 获取招商活动详情 |
 
 ## License
 
