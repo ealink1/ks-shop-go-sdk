@@ -140,6 +140,7 @@ type OpenOrderCursorListOrder struct {
 	OrderItemInfo      OpenOrderCursorListOrderItemInfo     `json:"orderItemInfo"`
 	OrderDeliveryInfo  OpenOrderCursorListOrderDeliveryInfo `json:"orderDeliveryInfo"`
 	SubOrderInfo       []OpenOrderCursorListSubOrderInfo    `json:"subOrderInfo"`
+	OrderCpsInfo       OrderCpsInfo                         `json:"orderCpsInfo"`
 }
 
 type OpenOrderCursorListOrderBaseInfo struct {
@@ -280,4 +281,13 @@ type OpenOrderCursorListOrderDeliveryInfo struct {
 
 type OpenOrderCursorListSubOrderInfo struct {
 	SubOrderId int64 `json:"subOrderId"`
+}
+
+type OrderCpsInfo struct {
+	DistributorId         int64  `json:"distributorId"`
+	DistributorName       string `json:"distributorName"`
+	ActivityUserId        int64  `json:"activityUserId"`
+	ActivityUserNickName  string `json:"activityUserNickName"`
+	KwaiMoneyUserId       int64  `json:"kwaiMoneyUserId"`
+	KwaiMoneyUserNickName string `json:"kwaiMoneyUserNickName"`
 }
